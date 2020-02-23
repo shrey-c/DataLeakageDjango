@@ -1,0 +1,50 @@
+{% extends 'app1/userHome.html' %}
+
+{% block content %}
+    <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-3">
+                    <h4> UPLOAD DOCUMENT </h4>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-5 col-md-offset-3">
+                    <!-- <input type="text" placeholder="Title" class="form-control"></input> -->
+                    {{ form.title }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-5 col-md-offset-3">
+                    <!-- <textarea class="form-control" rows="5" placeholder="Description"></textarea> -->
+                    {{ form.description }}
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-5 col-md-offset-3">
+                    <!-- <textarea class="form-control" rows="5" placeholder="Description"></textarea> -->
+                    {{ form.accesslevel }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-5 col-md-offset-3">
+                    <!-- <textarea class="form-control" rows="5" placeholder="Description"></textarea> -->
+                    {{ form.document }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-5 col-md-offset-3">
+                    <button type="submit" class="form-control btn btn-success">Upload</button>
+                </div>
+            </div>
+    
+        </div>
+    </form>
+  
+
+{% endblock content %}

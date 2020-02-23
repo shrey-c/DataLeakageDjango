@@ -1,0 +1,29 @@
+{% extends 'app1/userHome.html' %}
+
+{% block content %}
+     
+    <div class="row">
+        <div class="col-md-10" style="height:200px;overflow:auto;">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody>  
+                {% for file in data %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <tr><td>{{ file.title }}</td>
+                            <td>{{ file.description }}</td>
+                            <td><button type="submit" class="form-control btn btn-success" name="filename" value="{{ file.document }}"> Delete </button></td>
+                        </tr>
+                    </form>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

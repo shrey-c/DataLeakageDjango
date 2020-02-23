@@ -1,0 +1,31 @@
+{% extends 'app1/detectorHome.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-10" style="height:200px;overflow:auto;">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="text-center">FileName</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">ClientID</th>
+                    <th class="text-center">Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for file in data %}
+                        {% csrf_token %}
+                        <tr><td>{{ file.document }}</td>
+                            <td>{{ file.status }}</td>
+                        <td>{{ file.username }}</td>
+                        <td>{{ file.clientid }}</td>
+                        <td>{{ file.uploaded_at }}</td>
+                        </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}
