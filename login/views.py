@@ -7,7 +7,7 @@ from Crypto.Cipher import AES
 import uuid #for generation of client id
 import codecs
 import hashlib
-# Create your views here.
+
 
 def login_form(request):
 	if request.method == 'POST':
@@ -26,7 +26,7 @@ def login_form(request):
 						return HttpResponseRedirect("/user/userhome/")
 					else:
 						return HttpResponseRedirect("/user/detectorhome/")
-					#return HttpResponse("access granted")
+
 				else:
 					return HttpResponse("<h1> Access Denied </h1>")
 			except:
@@ -42,14 +42,13 @@ def login_assign(request):
 	encryption_suite = AES.new('this is a key123',AES.MODE_CBC,'this is an IV456')
 	cipher_text = encryption_suite.encrypt(clientid)
 	base64_data = codecs.encode(cipher_text,'base64')
-	asc = base64_data.decode('utf-8') #cipher text to readable string format
+	asc = base64_data.decode('utf-8') 
 
 	clientid1 = clientid.encode('utf-8')
 	print(clientid1)
 	hash_object = hashlib.sha512(clientid1)
 	hex_dig = hash_object.hexdigest() #hash
 
-	#to update the last record with the above values
 	q = LoginDetails.objects.last()
 	if q.clientid == "xyz":
 		q.clientid = clientid

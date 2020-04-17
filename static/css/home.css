@@ -1,0 +1,31 @@
+* {
+   line-height: 3;
+}
+.row{
+	padding-top: 15px;
+	padding-bottom: 15px;
+
+}
+section{
+	min-height: 100%;
+}
+/*
+nav{
+	background-color: #1C2331;
+	color: white;
+}
+*/
+.colored{
+	background-color: #3F729B;
+	color: #fafafa;
+}
+.color1{
+	background-color: #1C2331;
+	color: white;
+}
+.color2{
+	color: #ffa500 ;
+}
+input, label{
+	font-size: 14px;
+}
