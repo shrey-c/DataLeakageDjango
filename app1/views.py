@@ -334,6 +334,7 @@ def deletefile(request):
 			print(del_location)
 			delfile = doc.objects.get(document=name)
 			if(designation==1 and delfile.accesslevel != "$public" ):
+				k=[]
 				k.append(username)
 			doc.objects.get(document=name).delete()
 			subprocess.call(["rm", del_location])
