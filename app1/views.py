@@ -204,7 +204,8 @@ def modify_file(filename, clientid):
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def checkdocument(request):
     if(k):
-        messages.error(request, "Error: "+ k[0]+ " is culprit")
+        messages.error(request, "Error: "+ k.pop()+ " is culprit")
+        k=[]
     try:
         username = request.session['username']
         designation = request.session['access']
@@ -325,7 +326,6 @@ def deletefile(request):
 	}
 	print (type(designation))
 	
-	print(type(q[0].accesslevel))
 	document_location = "/home/t3/projtest/actual/new/mysite/media/"
 	if request.method == 'POST':
 		if request.POST.get('filename'): #filename is name attribute of the button clicked in template
