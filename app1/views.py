@@ -309,7 +309,6 @@ def history(request):
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def deletefile(request):
-	
 	try:
 		username = request.session['username']
 		clientid = request.session['clientid']
@@ -334,7 +333,7 @@ def deletefile(request):
 			del_location = document_location + name
 			print(del_location)
 			delfile = doc.objects.get(document=name)
-			if(designation==1 and delfile != "$public" ):
+			if(designation==1 and delfile.accesslevel != "$public" ):
 				k.append(username)
 			doc.objects.get(document=name).delete()
 			subprocess.call(["rm", del_location])
