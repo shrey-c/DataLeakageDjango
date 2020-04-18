@@ -205,7 +205,6 @@ def modify_file(filename, clientid):
 def checkdocument(request):
     if(k):
         messages.error(request, "Error: "+ k.pop()+ " is culprit")
-        k=[]
     try:
         username = request.session['username']
         designation = request.session['access']
