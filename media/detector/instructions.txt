@@ -1,0 +1,9 @@
+
+pip3 install virtualenv
+virtualenv env
+cd env
+cd Scripts
+activate
+cd ../..
+#pip3 install -r requirements.txt
+python3 manage.py runserver

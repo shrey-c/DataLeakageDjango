@@ -11,8 +11,9 @@ import subprocess
 import codecs
 from Crypto.Cipher import AES
 from django.db.models import Q
+from django.contrib import messages
 # Create your views here.
-
+k=[]
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def userhome(request):
 	try:
@@ -138,6 +139,7 @@ def displayfiles(request):
 		'designation': levels[designation%4 -1],
 		'username': username,
 	}
+	
 	if request.method == 'POST':
 		if request.POST.get('filename'): #filename is name attribute of the button clicked in template
 			name = request.POST.get('filename')
@@ -201,6 +203,8 @@ def modify_file(filename, clientid):
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def checkdocument(request):
+    if(k):
+        messages.error(request, "Error: "+ k[0]+ " is culprit")
     try:
         username = request.session['username']
         designation = request.session['access']
@@ -292,7 +296,8 @@ def history(request):
 		del request.session['username']  # end the session
 		return HttpResponseRedirect('/')  # redirect to login page
 
-	q = DetectorUpload.objects.exclude(status='Not Viewed').order_by("-uploaded_at")
+	#q = DetectorUpload.objects.exclude(status='Not Viewed').order_by("-uploaded_at")
+	q = DetectorUpload.objects.all()
 	context = {
 		'nbar': 'history',
 		'data': q,
@@ -304,6 +309,7 @@ def history(request):
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def deletefile(request):
+	
 	try:
 		username = request.session['username']
 		clientid = request.session['clientid']
@@ -318,12 +324,18 @@ def deletefile(request):
 		'designation': levels[designation%4 -1],
 		'username': username,
 	}
+	print (type(designation))
+	
+	print(type(q[0].accesslevel))
 	document_location = "/home/t3/projtest/actual/new/mysite/media/"
 	if request.method == 'POST':
 		if request.POST.get('filename'): #filename is name attribute of the button clicked in template
 			name = request.POST.get('filename')
 			del_location = document_location + name
 			print(del_location)
+			delfile = doc.objects.get(document=name)
+			if(designation==1 and delfile != "$public" ):
+				k.append(username)
 			doc.objects.get(document=name).delete()
 			subprocess.call(["rm", del_location])
 

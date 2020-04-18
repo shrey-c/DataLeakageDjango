@@ -1,7 +1,14 @@
 {% extends 'app1/userHome.html' %}
 
 {% block content %}
-     
+{% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    {{ message | safe }}
+	</div>
+{% endfor %}
     <div class="row">
         <div class="col-md-10" style="height:200px;overflow:auto;">
             <table class="table table-striped">
