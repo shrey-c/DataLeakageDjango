@@ -3,6 +3,6 @@ numpy==1.18.1
 opencv-python==4.2.0.32
 Pillow==7.0.0
 pycryptodome==3.9.7
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 reportlab==3.5.34
 
