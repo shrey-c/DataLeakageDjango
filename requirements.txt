@@ -1,5 +1,5 @@
 Django==1.11.29
-numpy==1.18.1
+numpy==1.22.0
 opencv-python==4.2.0.32
 Pillow==7.0.0
 pycryptodome==3.9.7
